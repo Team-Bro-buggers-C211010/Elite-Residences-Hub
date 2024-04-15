@@ -27,7 +27,7 @@ export default function Banner() {
           }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper mt-4 relative z-10"
+          className="mySwiper z-10 absolute top-[66px]"
         >
           <SwiperSlide><img className='md:w-full h-screen  md:h-[700px] object-cover object-center' src={"https://i.ibb.co/y0DbjN8/Home-Mansion.jpg"} alt="" /></SwiperSlide>
           <SwiperSlide><img className='md:w-full h-screen md:h-[700px] object-cover object-center' src={"https://i.ibb.co/yPDsFWB/Home-Penthouse.jpg"} alt="" /></SwiperSlide>
