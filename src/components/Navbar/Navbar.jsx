@@ -39,9 +39,9 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    <NavLink className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Log Out</NavLink>
-                    <NavLink className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign In</NavLink>
-                    <NavLink className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Register</NavLink>
+                    <NavLink to="/signout" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign Out</NavLink>
+                    <NavLink to="/signin" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign In</NavLink>
+                    <NavLink to="/register" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Register</NavLink>
                 </div>
             </div>
         </div>
