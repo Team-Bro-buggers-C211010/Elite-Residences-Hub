@@ -1,11 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
+import Banner from "../components/Banner/Banner";
 const Root = () => {
     return (
-        <div className="container mx-auto">
-            <Navbar></Navbar>
-            <h2>This is root page.</h2>
-            <Outlet></Outlet>
+        <div>
+            <div className="shadow-lg">
+                <Navbar className=""></Navbar>
+            </div>
+            <div className="container mx-auto">
+                <Outlet></Outlet>
+            </div>
         </div>
     );
 };
