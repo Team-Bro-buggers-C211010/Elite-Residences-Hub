@@ -6,6 +6,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import SignIn from './../Pages/SignIn/SignIn';
 import Register from './../Pages/Register/Register';
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import EstateDetails from './../Pages/EstateDetails/EstateDetails';
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
+                loader: () => fetch("../luxuryData.json"),
                 errorElement: <ErrorPage></ErrorPage>
             },
             {
@@ -31,6 +33,11 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>,
+                errorElement: <ErrorPage></ErrorPage>
+            },
+            {
+                path: "/estate/:id",
+                element: <PrivateRoute><EstateDetails></EstateDetails></PrivateRoute>,
                 errorElement: <ErrorPage></ErrorPage>
             },
         ]

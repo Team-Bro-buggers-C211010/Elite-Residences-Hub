@@ -1,8 +1,8 @@
-import { BiArea } from "react-icons/bi";
-import { MdOutlineLocationOn } from "react-icons/md";
-import { MdOutlineHouse } from "react-icons/md";
-import { IoPricetagsOutline } from "react-icons/io5";
+import { useLoaderData } from "react-router-dom";
+import EstateCard from "../../components/EstateCard/EstateCard";
+
 const Estate = () => {
+    const estateData = useLoaderData();
     return (
         <div>
             <div>
@@ -13,7 +13,7 @@ const Estate = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-5 mt-6 px-2 md:px-0">
                 {
-                    
+                    estateData.map( estate => <EstateCard key={estate.id} estate={estate}></EstateCard>)
                 }
             </div>
         </div>

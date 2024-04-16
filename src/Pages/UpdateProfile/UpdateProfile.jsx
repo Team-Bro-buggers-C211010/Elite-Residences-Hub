@@ -12,21 +12,21 @@ const UpdateProfile = () => {
                 displayName: name,
                 photoURL: photo,
             })
-                .then(() => setUpdate(!update))
+                .then(() => {setUpdate(!update)})
                 .catch()
         }
         else if (name !== "" && photo === "") {
             updateProfile(user, {
                 displayName: name,
             })
-                .then(() => setUpdate(!update))
+                .then(() => {setUpdate(!update)})
                 .catch()
         }
         else if (name === "" && photo !== "") {
             updateProfile(user, {
                 photoURL: photo,
             })
-                .then(() => setUpdate(!update))
+                .then(() => {setUpdate(!update)})
                 .catch()
         }
         else{
