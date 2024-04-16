@@ -1,6 +1,17 @@
 import { NavLink } from "react-router-dom";
 import mainLogo from "../../images/Main-Logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+    }
     const navLinks = <>
         <NavLink to="/" className={({ isActive, isTransitioning }) =>
             isActive ? "border-t-2 border-[#71b100] text-[#8cbd52]" : "hover:border-t-2 hover:border-[#71b100] hover:text-[#8cbd52] "
@@ -39,7 +50,7 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    <NavLink to="/signout" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign Out</NavLink>
+                    <NavLink onClick={handleSignOut} className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign Out</NavLink>
                     <NavLink to="/signin" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign In</NavLink>
                     <NavLink to="/register" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Register</NavLink>
                 </div>

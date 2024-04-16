@@ -1,14 +1,15 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 
-
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
+const gitHubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [update, setUpdate] = useState(false);
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -22,18 +23,25 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
+    const signInWithGithub = () => {
+        setLoading(true);
+        return signInWithPopup(auth,gitHubProvider);
+    }
     const logOut = () => {
         setLoading(true);
         return signOut(auth);
     }
     useEffect(() => {
-        onAuthStateChanged(auth, currentLoggedUser => {
+        const unsubscribe = onAuthStateChanged(auth, currentLoggedUser => {
             setUser(currentLoggedUser);
             setLoading(false);
             console.log("Observing from user : ", currentLoggedUser);
         })
-    }, [])
-    const authInfo = { user, loading, signInWithGoogle, createUser, signInUser, logOut };
+        return () => {
+            unsubscribe();
+        }
+    }, [update])
+    const authInfo = { user, update, setUser, setUpdate,  loading, signInWithGithub, signInWithGoogle, createUser, signInUser, logOut };
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
