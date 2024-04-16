@@ -6,6 +6,7 @@ import { LiaBathSolid } from "react-icons/lia";
 import { BiArea } from "react-icons/bi";
 import { FaRegBuilding } from "react-icons/fa";
 import { MdOutlineLocationOn } from "react-icons/md";
+import { HiMiniHashtag } from "react-icons/hi2";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 const EstateDetails = () => {
@@ -34,22 +35,27 @@ const EstateDetails = () => {
             <hr className="border-[#71b100] border-dashed mt-4" />
             <div className="mt-4">
                 <h1 className="text-xl md:text-3xl font-medium">Property Specifications :</h1>
-                <ul className="pl-4 mt-3 font-Roboto">
-                    <li className="flex gap-x-1 items-center text-base md:text-xl"><BiArea /> <p>Area : {estateData.area}</p></li>
-                    <li className="flex gap-x-1 items-center text-base md:text-xl"><FaRegBuilding /><p>Floor : {estateData.floor}</p></li>
-                    <li className="flex gap-x-1 items-center text-base md:text-xl"><MdOutlineBedroomParent /> <p>Bed : {estateData.bed}</p></li>
-                    <li className="flex gap-x-1 items-center text-base md:text-xl"><LiaBathSolid /> <p>Bathroom : {estateData.bathroom}</p></li>
+                <ul className="pl-4 mt-3 font-Roboto flex flex-col gap-y-2">
+                    <li className="flex gap-x-1 items-center text-base md:text-xl"><BiArea className="text-[#8cbd52]" /> <p>Area : {estateData.area}</p></li>
+                    <li className="flex gap-x-1 items-center text-base md:text-xl"><FaRegBuilding className="text-[#8cbd52]" /><p>Floor : {estateData.floor}</p></li>
+                    <li className="flex gap-x-1 items-center text-base md:text-xl"><MdOutlineBedroomParent className="text-[#8cbd52]" /> <p>Bed : {estateData.bed}</p></li>
+                    <li className="flex gap-x-1 items-center text-base md:text-xl"><LiaBathSolid className="text-[#8cbd52]" /> <p>Bathroom : {estateData.bathroom}</p></li>
                 </ul>
             </div>
             <hr className="border-[#71b100] border-dashed mt-4" />
             <div className="mt-4">
                 <h1 className="text-xl md:text-3xl font-medium">Facilities : </h1>
+                <ul className="font-Roboto grid grid-cols-1 lg:grid-cols-3 lg:w-2/3 mt-2 pl-4 gap-2">
+                    {
+                        estateData.facilities.map(facility => <li className="flex gap-x-1 items-center text-base md:text-xl"><HiMiniHashtag className="text-[#8cbd52] font-extrabold" /><p>{facility}</p></li>)
+                    }
+                </ul>
             </div>
             <hr className="border-[#71b100] border-dashed mt-4" />
             <div className="mt-4">
                 <h1 className="text-xl md:text-3xl font-medium">Location Info :</h1>
-                <p className="mt-4 flex items-center gap-x-1 text-base md:text-xl text-[#71b100] font-medium font-Roboto"><MdOutlineLocationOn /> {estateData.location}</p>
-                <div className="border-2 border-[#8cbd52] p-1 shadow-xl">
+                <p className="mt-4 flex items-center gap-x-1 text-xl md:text-2xl text-[#71b100] font-medium font-Roboto"><MdOutlineLocationOn /> {estateData.location}</p>
+                <div className="mt-2 border-2 border-[#8cbd52] p-1 shadow-xl">
                     <MapContainer className="h-96" center={position} zoom={14} scrollWheelZoom={true} >
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
