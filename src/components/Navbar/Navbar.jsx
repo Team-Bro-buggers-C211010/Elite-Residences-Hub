@@ -56,13 +56,13 @@ const Navbar = () => {
                     {
                         loading ? <span className="loading loading-spinner text-success"></span> :
                             user ? <>
-                                <div className="dropdown dropdown-end">
-                                    <div tabIndex={0} role="button" className="btn bg-transparent btn-circle hover:border hover:border-[#82b440] avatar">
+                                <NavLink to="/update-profile" className="dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-bottom hover:tooltip-success" data-tip={user.displayName}>
+                                    <div tabIndex={0} role="button" className="btn bg-transparent btn-circle hover:border hover:border-[#82b440] avatar" >
                                         <div className="w-10 rounded-full">
-                                            <img alt="User Profile" src={user.photoURL} />
+                                            <img alt="User Profile" src={user.photoURL} className=""  />
                                         </div>
                                     </div>
-                                </div>
+                                </NavLink>
                                 <NavLink onClick={handleSignOut} className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign Out</NavLink>
                             </> :
                                 <>
@@ -73,12 +73,12 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end flex md:hidden gap-x-1">
                     {
-                        user && <div className="dropdown dropdown-end">
-                            <button tabIndex={0} role="button" className="bg-transparent w-8 h-8 border border-white flex justify-center items-center rounded-full hover:border hover:border-[#82b440] avatar">
+                        user && <div className="dropdown dropdown-end hover:tooltip hover:tooltip-open hover:tooltip-left hover:tooltip-success" data-tip={user.displayName} >
+                            <NavLink to="/update-profile" tabIndex={0} role="button" className="bg-transparent w-8 h-8 border border-white flex justify-center items-center rounded-full hover:border hover:border-[#82b440] avatar">
                                 <div className="w-6 rounded-full">
                                     <img alt="User Profile" src={user.photoURL} />
                                 </div>
-                            </button>
+                            </NavLink>
                         </div>
                     }
                 </div>
