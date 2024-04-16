@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        poppins: "Poppins"
+        poppins: "Poppins",
+        Lora: "Lora",
+        Roboto: "Roboto"
       }
     },
   },

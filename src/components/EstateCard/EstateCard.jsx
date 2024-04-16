@@ -10,7 +10,7 @@ const EstateCard = ({estate}) => {
                 <div className="bg-[#8cbd52] w-24 h-10 absolute flex justify-center items-center p-3 rounded-full rounded-l-none left-0"><p className="text-white text-lg font-medium">{estate.status}</p></div>
             </figure>
             <div className="card-body p-2 md:p-5 lg:w-1/2 justify-center">
-                <h2 className="text-base md:text-lg font-bold mb-2 md:mb-3">{estate.estate_title}</h2>
+                <h2 className="font-Lora text-base md:text-lg font-bold mb-2 md:mb-3">{estate.estate_title}</h2>
                 <h3 className="flex gap-x-1 mt-1 mb-1 md:mb-2 items-center"><MdOutlineLocationOn className="w-5 h-5" />{estate.location} </h3>
                 <hr className="border-[#8cbd52]" />
                 <div className="mt-3 mb-1">

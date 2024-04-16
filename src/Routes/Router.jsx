@@ -38,6 +38,7 @@ const router = createBrowserRouter([
             {
                 path: "/estate/:id",
                 element: <PrivateRoute><EstateDetails></EstateDetails></PrivateRoute>,
+                loader: () => fetch("../luxuryData.json"),
                 errorElement: <ErrorPage></ErrorPage>
             },
         ]
