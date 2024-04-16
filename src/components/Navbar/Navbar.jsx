@@ -3,7 +3,7 @@ import mainLogo from "../../images/Main-Logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
     const handleSignOut = () => {
         logOut()
             .then(() => {
@@ -33,26 +33,54 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             {navLinks}
+                            <div className="inline-block md:hidden">
+                                {
+                                    user ? <NavLink onClick={handleSignOut} className="btn w-1/2 text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign Out</NavLink>
+                                        :
+                                        <>
+                                            <NavLink to="/signin" className="btn w-1/2 text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign In</NavLink>
+                                            <NavLink to="/register" className="btn w-1/2 text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Register</NavLink>
+                                        </>
+                                }
+                            </div>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl text-black hover:bg-transparent hover:border hover:border-[#8cbd52]"><img className="w-7 h-7" src={mainLogo} alt="" /> <span className="text-[#71b100]"> Elite Residences</span> Hub</a>
+                    <a className="btn btn-ghost text-sm md:text-xl text-black hover:bg-transparent hover:border hover:border-[#8cbd52]"><img className="w-4 h-4 md:w-7 md:h-7" src={mainLogo} alt="" /> <span className="text-[#71b100]"> Elite Residences</span> Hub</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal items-center gap-x-6 px-1">
                         {navLinks}
                     </ul>
                 </div>
-                <div className="navbar-end gap-x-1">
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                            </div>
+                <div className="navbar-end hidden md:flex gap-x-1">
+                    {
+                        loading ? <span className="loading loading-spinner text-success"></span> :
+                            user ? <>
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="btn bg-transparent btn-circle hover:border hover:border-[#82b440] avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img alt="User Profile" src={user.photoURL} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <NavLink onClick={handleSignOut} className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign Out</NavLink>
+                            </> :
+                                <>
+                                    <NavLink to="/signin" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign In</NavLink>
+                                    <NavLink to="/register" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Register</NavLink>
+                                </>
+                    }
+                </div>
+                <div className="navbar-end flex md:hidden gap-x-1">
+                    {
+                        user && <div className="dropdown dropdown-end">
+                            <button tabIndex={0} role="button" className="bg-transparent w-8 h-8 border border-white flex justify-center items-center rounded-full hover:border hover:border-[#82b440] avatar">
+                                <div className="w-6 rounded-full">
+                                    <img alt="User Profile" src={user.photoURL} />
+                                </div>
+                            </button>
                         </div>
-                    </div>
-                    <NavLink onClick={handleSignOut} className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign Out</NavLink>
-                    <NavLink to="/signin" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Sign In</NavLink>
-                    <NavLink to="/register" className="btn text-white bg-[#82b440] hover:border hover:border-[#82b440] hover:text-[#82b440] hover:bg-transparent">Register</NavLink>
+                    }
                 </div>
             </div>
         </div>
