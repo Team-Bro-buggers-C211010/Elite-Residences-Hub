@@ -48,8 +48,8 @@ const Register = () => {
                 <div className="hero rounded-2xl lg:h-[800px]">
                     <div className="hero-content flex-col lg:flex-row">
                         <div className="text-center lg:text-left md:w-1/2">
-                            <h1 className="text-5xl font-bold text-[#71b100]">Register now!</h1>
-                            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                            <h1 className="text-4xl md:text-5xl font-bold text-[#71b100]">Register now!</h1>
+                            <p className="py-6 text-sm md:text-base">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                         </div>
                         <div className="card shrink-0 w-full max-w-sm md:w-1/2 shadow-2xl bg-base-100">
                             <form onSubmit={handleRegister} className="card-body">
@@ -57,25 +57,25 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Name</span>
                                     </label>
-                                    <input type="text" name="name" placeholder="Your name" className="input input-bordered" />
+                                    <input type="text" name="name" placeholder="Your name" className="text-sm md:text-base input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Photo URL</span>
                                     </label>
-                                    <input type="text" placeholder="Photo url" name="photo" className="input input-bordered w-full max-w-xs" />
+                                    <input type="text" placeholder="Photo url" name="photo" className="input text-sm md:text-base input-bordered w-full max-w-xs" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
+                                    <input type="email" name="email" placeholder="Email" className="input text-sm md:text-base input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" name="password" placeholder="Password" className="input input-bordered" required />
+                                    <input type="password" name="password" placeholder="Password" className="input text-sm md:text-base input-bordered" required />
                                     <label className="label">
                                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </label>
