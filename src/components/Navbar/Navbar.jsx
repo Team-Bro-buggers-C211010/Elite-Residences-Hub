@@ -45,7 +45,7 @@ const Navbar = () => {
                             </div>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-sm md:text-xl text-black hover:bg-transparent hover:border hover:border-[#8cbd52]"><img className="w-4 h-4 md:w-7 md:h-7" src={mainLogo} alt="" /> <span className="text-[#71b100]"> Elite Residences</span> Hub</a>
+                    <NavLink to="/" className="btn btn-ghost text-sm md:text-xl text-black hover:bg-transparent hover:border hover:border-[#8cbd52]"><img className="w-4 h-4 md:w-7 md:h-7" src={mainLogo} alt="" /> <span className="text-[#71b100]"> Elite Residences</span> Hub</NavLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal items-center gap-x-6 px-1">

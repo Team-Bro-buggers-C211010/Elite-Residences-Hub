@@ -68,7 +68,7 @@ const SignIn = () => {
                         <h1 className="text-4xl md:text-5xl font-bold text-[#71b100]">SignIn now!</h1>
                         <p className="py-6 text-sm md:text-base">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-2 border-[#82b440]">
                         <form onSubmit={handleSignIn} className="card-body">
                             <div className="form-control text-sm md:text-base">
                                 <label className="label">
