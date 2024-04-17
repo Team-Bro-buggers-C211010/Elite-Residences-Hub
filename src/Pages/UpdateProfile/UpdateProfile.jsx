@@ -11,7 +11,7 @@ const UpdateProfile = () => {
     useEffect(() => {
         AOS.init();
     }, [])
-    const { user, setUpdate, update, setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
     const handleUpdateProfile = (e) => {
         const name = e.target.name.value;
         const photo = e.target.photo.value;
@@ -20,25 +20,34 @@ const UpdateProfile = () => {
                 displayName: name,
                 photoURL: photo,
             })
-                .then(() => {setUser({...user,displayName:name,photoURL:photo}); toast.success("User Name & Photo URL is updated !!!");})
+                .then(() => { 
+                    setUser({ ...user, displayName: name, photoURL: photo }) 
+                    alert("User Name & Photo URL is updated !!!")
+                })
                 .catch()
         }
         else if (name !== "" && photo === "") {
             updateProfile(user, {
                 displayName: name,
             })
-                .then(() => {setUser({...user,displayName:name}); toast.success("User Name is updated !!!");})
+                .then(() => {
+                    setUser({ ...user, displayName: name })
+                    toast.success("User Name is updated !!!")
+                })
                 .catch()
         }
         else if (name === "" && photo !== "") {
             updateProfile(user, {
                 photoURL: photo,
             })
-                .then(() => {setUser({...user,photoURL:photo}); toast.success("User Photo URL is updated !!!");})
+                .then(() => { 
+                    setUser({ ...user, photoURL: photo })
+                    toast.success("User Photo URL is updated !!!")
+                })
                 .catch()
         }
-        else{
-            toast.warning("Nothing is updated!!!");
+        else {
+            toast.warning("Nothing is updated!!!")
         }
     }
     return (
@@ -56,15 +65,15 @@ const UpdateProfile = () => {
                     <form onSubmit={handleUpdateProfile} className='space-y-2 md:space-y-4'>
                         <label className="input input-bordered flex items-center gap-x-2 text-xs md:text-base">
                             Name :
-                            <input type="text" name='name' className="grow" placeholder={user.displayName} />
+                            <input type="text" name='name' className="grow text-xs md:text-base" placeholder={user.displayName} />
                         </label>
-                        <label className="input input-bordered flex items-center gap-2 text-sm md:text-base">
+                        <label className="input input-bordered flex items-center gap-2 text-xs md:text-base">
                             Email :
-                            <input type="email" name='email' className="grow" placeholder={user.email ? user.email : "Not Given by Provider"} disabled />
+                            <input type="email" name='email' className="grow text-xs md:text-base" placeholder={user.email ? user.email : "Not Given by Provider"} disabled />
                         </label>
-                        <label className="input input-bordered flex items-center gap-2 text-sm md:text-base">
+                        <label className="input input-bordered flex items-center gap-2 text-xs md:text-base">
                             Photo URL :
-                            <input type="photo" name='photo' className="grow" placeholder={user.photoURL} />
+                            <input type="photo" name='photo' className="grow text-xs md:text-base" placeholder={user.photoURL} />
                         </label>
                         <div className="mt-3 md:gap-x-2 gap-y-2 md:gap-y-0 flex justify-center font-semibold">
                             <button className='btn bg-white border border-[#ffffff] text-[#70b100] hover:bg-[#70b100] hover:text-white'>Update Profile</button>

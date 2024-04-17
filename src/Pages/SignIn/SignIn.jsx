@@ -71,28 +71,28 @@ const SignIn = () => {
             <Helmet>
                 <title> Elite Residences Hub | Sign-In </title>
             </Helmet>
-            <div className='px-2 md:px-0 backdrop-blur-sm bg-white/30 w-full h-full'><div className="container mx-auto hero rounded-2xl md:h-[800px] ">
+            <div className='backdrop-blur-sm bg-white/30 w-full h-full'><div className="container mx-auto hero rounded-2xl md:h-[800px] ">
                 <div className="hero-content flex-col lg:flex-row">
-                    <div className="text-center md:w-1/2 lg:text-left" data-aos="zoom-in-right" data-aos-duration="1500">
+                    <div className="text-center md:w-1/2 lg:text-left" data-aos="flip-left" data-aos-duration="1500">
                         <h1 className="text-4xl md:text-5xl font-bold text-[#71b100]">SignIn now!</h1>
                         <p className="py-6 text-sm md:text-base">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-2 border-[#82b440]" data-aos="zoom-in-left" data-aos-duration="2000">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-2 border-[#82b440]" data-aos="flip-right" data-aos-duration="2000">
                         <form onSubmit={handleSignIn} className="card-body">
-                            <div className="form-control text-sm md:text-base">
+                            <div className="form-control text-xs md:text-base">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name="email" placeholder="Email" className="input input-bordered text-sm md:text-base" required />
+                                <input type="email" name="email" placeholder="Email" className="input input-bordered text-xs md:text-base" required />
                             </div>
-                            <div className="form-control text-sm md:text-base">
+                            <div className="form-control text-xs md:text-base">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type={eyeCheck ? "text" : "password"} name="password" placeholder="Password" className="input text-sm md:text-base input-bordered" required />
-                                <Link className="absolute right-14 bottom-[283px]  md:bottom-[293px]" onClick={() => setEyeCheck(!eyeCheck)}> {eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />} </Link>
+                                <input type={eyeCheck ? "text" : "password"} name="password" placeholder="Password" className="input text-xs md:text-base input-bordered" required />
+                                <Link className="absolute right-14 bottom-[278px]  md:bottom-[293px]" onClick={() => setEyeCheck(!eyeCheck)}> {eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />} </Link>
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover text-sm md:text-base">Forgot password?</a>
+                                    <a href="#" className="label-text-alt link link-hover text-xs md:text-base">Forgot password?</a>
                                 </label>
                             </div>
                             <div>

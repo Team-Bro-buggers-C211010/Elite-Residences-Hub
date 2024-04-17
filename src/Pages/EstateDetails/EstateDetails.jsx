@@ -13,6 +13,13 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import L from 'leaflet';
+import locationImg from "../../images/location.png"
+
+const customIcon = new L.Icon({
+    iconUrl: locationImg ,
+    iconSize: [32, 32], // size of the icon
+});
 
 const EstateDetails = () => {
     useEffect(() => {
@@ -28,17 +35,16 @@ const EstateDetails = () => {
                 <title> {estateData.estate_title} </title>
             </Helmet>
             <h1 data-aos="fade-down" data-aos-duration="1000" className="text-3xl md:text-5xl text-center font-semibold">Property <span className="text-[#71b100]">Details</span></h1>
-            <div data-aos="flip-left"
-                data-aos-easing="ease-out-cubic"
+            <div data-aos="zoom-in"
                 data-aos-duration="1500" className="relative mt-5 hero rounded-lg bg-base-200 min-h-[300px] md:min-h-[700px] bg-cover bg-center" style={{ backgroundImage: `url("${estateData.image}")` }}>
                 <div className="bg-[#8cbd52] w-24 md:w-32 h-10 md:h-16 absolute flex justify-center items-center p-3 rounded-full rounded-l-none left-0 font-Lora"><p className="text-white text-lg md:text-3xl font-medium">{estateData.status}</p></div>
             </div>
             <div className="mt-10">
-                <h1 data-aos="fade-right"
+                <h1 data-aos="flip-left"
                     data-aos-duration="1500" className="font-Lora text-2xl md:text-4xl font-semibold">{estateData.estate_title}</h1>
-                <div data-aos="fade-right"
+                <div data-aos="flip-left"
                     data-aos-duration="2000" className="mt-2 text-xl md:text-3xl flex gap-x-2 items-center text-[#71b100] font-medium"><IoPricetagsOutline /><p>{estateData.price}</p></div>
-                <div data-aos="fade-right"
+                <div data-aos="flip-left"
                     data-aos-duration="2500" className="mt-2 text-xl md:text-3xl flex gap-x-2 items-center text-[#71b100] font-medium"><MdOutlineHouse /> {estateData.segment_name}</div>
             </div>
             <hr className="border-[#71b100] border-dashed mt-4" />
@@ -70,13 +76,13 @@ const EstateDetails = () => {
             <div className="mt-4">
                 <h1 data-aos="fade-down" data-aos-duration="1000" className="text-xl md:text-3xl font-medium">Location Info :</h1>
                 <p className="mt-4 flex items-center gap-x-1 text-xl md:text-2xl text-[#71b100] font-medium font-Roboto"><MdOutlineLocationOn /> {estateData.location}</p>
-                <div data-aos="zoom-out-up" data-aos-duration="1000" className="mt-2 border-2 border-[#8cbd52] p-1 shadow-xl">
+                <div data-aos="fade-up" data-aos-duration="1000" className="mt-2 border-2 border-[#8cbd52] p-1 shadow-xl">
                     <MapContainer className="h-96" center={position} zoom={14} scrollWheelZoom={true} >
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Marker position={position}>
+                        <Marker icon={customIcon} position={position}>
                             <Popup>
                                 {estateData.estate_title}
                             </Popup>
