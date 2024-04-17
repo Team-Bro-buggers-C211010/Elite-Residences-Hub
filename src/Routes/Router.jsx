@@ -7,6 +7,7 @@ import SignIn from './../Pages/SignIn/SignIn';
 import Register from './../Pages/Register/Register';
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import EstateDetails from './../Pages/EstateDetails/EstateDetails';
+import Blog from "../Pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,12 @@ const router = createBrowserRouter([
             {
                 path: "/update-profile",
                 element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
+                errorElement: <ErrorPage></ErrorPage>
+            },
+            {
+                path: "/blog",
+                element: <PrivateRoute><Blog></Blog></PrivateRoute>,
+                loader: () => fetch("../blogData.json"),
                 errorElement: <ErrorPage></ErrorPage>
             },
             {

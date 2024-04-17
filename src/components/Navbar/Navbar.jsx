@@ -19,9 +19,11 @@ const Navbar = () => {
         <NavLink to="/update-profile" className={({ isActive, isTransitioning }) =>
             isActive ? "border-t-2 border-[#71b100] text-[#8cbd52]" : "hover:border-t-2 hover:border-[#71b100] hover:text-[#8cbd52] "
         }>Update Profile</NavLink>
-        <NavLink to='/profile' className={({ isActive, isTransitioning }) =>
+        {
+            user && <><NavLink to='/blog' className={({ isActive, isTransitioning }) =>
             isActive ? "border-t-2 border-[#71b100] text-[#8cbd52]" : "hover:border-t-2 hover:border-[#71b100] hover:text-[#8cbd52] "
-        }>My Profile</NavLink>
+        }>Blog</NavLink></>
+        }
     </>
     return (
         <div className="bg-white w-full z-50 fixed top-0 shadow-2xl">
