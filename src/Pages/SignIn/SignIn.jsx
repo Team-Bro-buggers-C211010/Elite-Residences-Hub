@@ -1,12 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import loginBG from "../../images/loginBG.png";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { LuEye } from "react-icons/lu";
+import { LuEyeOff } from "react-icons/lu";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const SignIn = () => {
+    useEffect(() => {
+        AOS.init();
+    }, [])
     const naviGate = useNavigate();
+    const [eyeCheck, setEyeCheck] = useState(false);
     const { user, setUser, signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
     console.log(user);
     const handleSignIn = e => {
@@ -61,14 +70,14 @@ const SignIn = () => {
             })
     }
     return (
-        <div className="relative top-[67px] bg-cover flex items-center bg-center bg-no-repeat md:h-[calc(100%-67px)] lg:h-[calc(100vh-67px)] w-full" style={{ backgroundImage: `url(${loginBG})` }}>
+        <div className="relative top-[67px] bg-cover mb-[67px] flex items-center bg-center bg-no-repeat md:h-[calc(100%-67px)] lg:h-[calc(1024px-67px)] w-full" style={{ backgroundImage: `url(${loginBG})` }}>
             <div className='px-2 md:px-0 backdrop-blur-sm bg-white/30 w-full h-full'><div className="container mx-auto hero rounded-2xl md:h-[800px] ">
                 <div className="hero-content flex-col lg:flex-row">
-                    <div className="text-center md:w-1/2 lg:text-left">
+                    <div className="text-center md:w-1/2 lg:text-left" data-aos="zoom-in-right" data-aos-duration="1500">
                         <h1 className="text-4xl md:text-5xl font-bold text-[#71b100]">SignIn now!</h1>
                         <p className="py-6 text-sm md:text-base">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-2 border-[#82b440]">
+                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border-2 border-[#82b440]" data-aos="zoom-in-left" data-aos-duration="2000">
                         <form onSubmit={handleSignIn} className="card-body">
                             <div className="form-control text-sm md:text-base">
                                 <label className="label">
@@ -80,7 +89,8 @@ const SignIn = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="Password" className="input input-bordered text-sm md:text-base" required />
+                                <input type={eyeCheck ? "text" : "password"} name="password" placeholder="Password" className="input text-sm md:text-base input-bordered" required />
+                                <Link className="absolute right-14 bottom-[283px]  md:bottom-[293px]" onClick={() => setEyeCheck(!eyeCheck)}> {eyeCheck ? <LuEyeOff className="w-5 h-5" /> : <LuEye className="w-5 h-5" />} </Link>
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover text-sm md:text-base">Forgot password?</a>
                                 </label>

@@ -3,9 +3,16 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import { MdOutlineHouse } from "react-icons/md";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 const EstateCard = ({estate}) => {
+    useEffect(() => {
+        AOS.init();
+    }, [])
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl">
+        <div className="card lg:card-side bg-base-100 shadow-xl" data-aos="fade-up" data-aos-offset="150"
+        data-aos-easing="ease-in-sine">
             <figure className="lg:w-1/2 relative"><img src={estate.image} className="h-full object-cover" alt="Album" />
                 <div className="bg-[#8cbd52] w-24 h-10 absolute flex justify-center items-center p-3 rounded-full rounded-l-none left-0"><p className="text-white text-lg font-medium">{estate.status}</p></div>
             </figure>
