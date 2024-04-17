@@ -35,12 +35,11 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentLoggedUser => {
             setUser(currentLoggedUser);
             setLoading(false);
-            console.log("Observing from user : ", currentLoggedUser);
         })
         return () => {
             unsubscribe();
         }
-    }, [loading])
+    }, [user])
     const authInfo = { user, update, setLoading, setUser, setUpdate,  loading, signInWithGithub, signInWithGoogle, createUser, signInUser, logOut };
     return (
         <AuthContext.Provider value={authInfo}>

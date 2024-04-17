@@ -4,12 +4,14 @@ import { updateProfile } from 'firebase/auth';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const UpdateProfile = () => {
     useEffect(() => {
         AOS.init();
     }, [])
-    const { user, setUpdate, update } = useContext(AuthContext);
+    const { user, setUpdate, update, setUser } = useContext(AuthContext);
     const handleUpdateProfile = (e) => {
         const name = e.target.name.value;
         const photo = e.target.photo.value;
@@ -18,29 +20,32 @@ const UpdateProfile = () => {
                 displayName: name,
                 photoURL: photo,
             })
-                .then(() => {setUpdate(!update)})
+                .then(() => {setUser({...user,displayName:name,photoURL:photo}); toast.success("User Name & Photo URL is updated !!!");})
                 .catch()
         }
         else if (name !== "" && photo === "") {
             updateProfile(user, {
                 displayName: name,
             })
-                .then(() => {setUpdate(!update)})
+                .then(() => {setUser({...user,displayName:name}); toast.success("User Name is updated !!!");})
                 .catch()
         }
         else if (name === "" && photo !== "") {
             updateProfile(user, {
                 photoURL: photo,
             })
-                .then(() => {setUpdate(!update)})
+                .then(() => {setUser({...user,photoURL:photo}); toast.success("User Photo URL is updated !!!");})
                 .catch()
         }
         else{
-            alert("Nothing is updated!!!");
+            toast.warning("Nothing is updated!!!");
         }
     }
     return (
-        <div className='relative top-[67px] mt-10 container mx-auto mb-24 px-1 md:px-0'>
+        <div className='relative top-[67px] mt-6 md:mt-10 container mx-auto mb-24 px-1 md:px-0'>
+            <Helmet>
+                <title> {user.displayName} | Elite Residences Hub </title>
+            </Helmet>
             <div data-aos="fade-down" data-aos-duration="1000" className="mx-auto mb-6 border border-[#23BE0A] md:p-5 w-full md:w-1/4 font-bold text-white text-2xl rounded-2xl flex items-center justify-center shadow-lg h-24 bg-[#70b100e1]">User Details</div>
             <div className="text-center font-semibold mb-5 text-2xl fontWorkSans" data-aos="zoom-in-down" data-aos-duration="1500">Note: Only Name & Photo URL can be modified.</div>
             <div className='grid grid-cols-1 justify-center items-center gap-y-5'>

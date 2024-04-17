@@ -9,8 +9,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 const Register = () => {
-    const {loading , setLoading} = useContext(AuthContext);
+    const {setUser , setLoading} = useContext(AuthContext);
     useEffect(() => {
         AOS.init();
     }, [])
@@ -41,17 +42,23 @@ const Register = () => {
                     displayName: name,
                     photoURL: photo,
                 })
+                .then(
+                    () => {setUser({...res.user,displayName:name,photoURL:photo});}
+                )
                 e.target.reset();
                 setLoading(true);
                 naviGate('/');
                 toast.success("User register successfully !!!");
             })
             .catch(err => {
-                toast.error(err);
+                toast.error("Invalid information or user already created !!!");
             })
     }
     return (
         <div className="relative top-[67px] bg-cover mb-[67px] flex items-center bg-center bg-no-repeat md:h-[calc(100%-67px)] lg:h-[calc(1024px-67px)] w-full" style={{ backgroundImage: `url(${registerBG})` }}>
+            <Helmet>
+                <title> Elite Residences Hub | Register </title>
+            </Helmet>
             <div className='px-2 md:px-0 backdrop-blur-sm bg-white/30 w-full h-full'>
                 <div className="hero rounded-2xl lg:h-[800px]">
                     <div className="hero-content flex-col lg:flex-row">

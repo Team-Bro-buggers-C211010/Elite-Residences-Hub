@@ -10,6 +10,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const SignIn = () => {
     useEffect(() => {
@@ -67,6 +68,9 @@ const SignIn = () => {
     }
     return (
         <div className="relative top-[67px] bg-cover mb-[67px] flex items-center bg-center bg-no-repeat md:h-[calc(100%-67px)] lg:h-[calc(1024px-67px)] w-full" style={{ backgroundImage: `url(${loginBG})` }}>
+            <Helmet>
+                <title> Elite Residences Hub | Sign-In </title>
+            </Helmet>
             <div className='px-2 md:px-0 backdrop-blur-sm bg-white/30 w-full h-full'><div className="container mx-auto hero rounded-2xl md:h-[800px] ">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="text-center md:w-1/2 lg:text-left" data-aos="zoom-in-right" data-aos-duration="1500">
@@ -92,7 +96,7 @@ const SignIn = () => {
                                 </label>
                             </div>
                             <div>
-                                <p className="text-xs md:text-base">New in AuthContext? <Link to="/register" className="font-bold text-[#82b440] hover:text-lg">SignUp Now!</Link></p>
+                                <p className="text-xs md:text-base">New in AuthContext? <Link to="/register" className="font-bold text-[#82b440] hover:text-lg">Register Now!</Link></p>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-[#71b100] text-white hover:bg-transparent hover:border hover:border-[#8cbd52] hover:text-[#82b440]">Sign In</button>

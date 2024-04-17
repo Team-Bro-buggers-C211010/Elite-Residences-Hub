@@ -12,6 +12,7 @@ import 'leaflet/dist/leaflet.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const EstateDetails = () => {
     useEffect(() => {
@@ -21,9 +22,11 @@ const EstateDetails = () => {
     const { id } = useParams();
     const estateData = estatesData.find(data => data.id == id);
     const position = [estateData.latitude, estateData.longitude]
-    console.log(position);
     return (
         <div className="mt-24 container mx-auto px-2 md:px-0">
+            <Helmet>
+                <title> {estateData.estate_title} </title>
+            </Helmet>
             <h1 data-aos="fade-down" data-aos-duration="1000" className="text-3xl md:text-5xl text-center font-semibold">Property <span className="text-[#71b100]">Details</span></h1>
             <div data-aos="flip-left"
                 data-aos-easing="ease-out-cubic"
@@ -59,7 +62,7 @@ const EstateDetails = () => {
                 <h1 data-aos="fade-down" data-aos-duration="1000" className="text-xl md:text-3xl font-medium">Facilities : </h1>
                 <ul className="font-Roboto grid grid-cols-1 lg:grid-cols-3 lg:w-2/3 mt-2 pl-4 gap-2">
                     {
-                        estateData.facilities.map(facility => <li className="flex gap-x-1 items-center text-base md:text-xl"><HiMiniHashtag className="text-[#8cbd52] font-extrabold" /><p>{facility}</p></li>)
+                        estateData.facilities.map((facility, idx) => <li key={idx} className="flex gap-x-1 items-center text-base md:text-xl"><HiMiniHashtag className="text-[#8cbd52] font-extrabold" /><p>{facility}</p></li>)
                     }
                 </ul>
             </div>
