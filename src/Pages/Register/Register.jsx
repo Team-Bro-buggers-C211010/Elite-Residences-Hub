@@ -8,7 +8,9 @@ import { LuEyeOff } from "react-icons/lu";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 const Register = () => {
+    const {loading , setLoading} = useContext(AuthContext);
     useEffect(() => {
         AOS.init();
     }, [])
@@ -22,22 +24,17 @@ const Register = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         if (password.length < 6) {
-            setLoginError("Password should be at least 6 characters");
+            toast.error("Password should be at least 6 characters");
             return;
         }
         else if (!/[A-Z]/.test(password)) {
-            setLoginError("Password should have one uppercase character");
-            return;
-        }
-        else if (!/[0-9]/.test(password)) {
-            setLoginError("Password should have one number init.");
+            toast.error("Password should have one uppercase character");
             return;
         }
         else if (!/[a-z]/.test(password)) {
-            setLoginError("Password should have at least one lowercase character.");
+            toast.error("Password should have at least one lowercase character.");
             return;
         }
-        console.log(name, email, password);
         createUser(email, password)
             .then(res => {
                 updateProfile(res.user, {
@@ -45,10 +42,12 @@ const Register = () => {
                     photoURL: photo,
                 })
                 e.target.reset();
+                setLoading(true);
                 naviGate('/');
+                toast.success("User register successfully !!!");
             })
             .catch(err => {
-                console.log(err);
+                toast.error(err);
             })
     }
     return (

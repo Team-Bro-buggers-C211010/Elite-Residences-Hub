@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import loginBG from "../../images/loginBG.png";
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -9,64 +9,60 @@ import { LuEyeOff } from "react-icons/lu";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
     useEffect(() => {
         AOS.init();
     }, [])
     const naviGate = useNavigate();
+    const location = useLocation();
     const [eyeCheck, setEyeCheck] = useState(false);
-    const { user, setUser, signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
-    console.log(user);
+    const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
     const handleSignIn = e => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         if (password.length < 6) {
-            alert("Password should be at least 6 characters");
+            toast.error("Password should be at least 6 characters");
             return;
         }
         else if (!/[A-Z]/.test(password)) {
-            setLoginError("Password should have one uppercase character");
-            alert("Password should have one uppercase character");
-            return;
-        }
-        else if (!/[0-9]/.test(password)) {
-            alert("Password should have one number init.");
+            toast.error("Password should have one uppercase character");
             return;
         }
         else if (!/[a-z]/.test(password)) {
-            alert("Password should have at least one lowercase character");
+            toast.error("Password should have at least one lowercase character");
             return;
         }
         signInUser(email, password)
             .then(res => {
-                console.log(res.user);
                 e.target.reset();
-                naviGate('/');
+                naviGate(location?.state ? location.state : "/");
+                toast.success("Log In Successfully !!!");
             })
             .catch(err => {
-                console.error(err);
+                toast.error("Invalid Email or Password !!!");
             })
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(res => {
-                console.log(res.user);
+                toast.success("Log In Successfully !!!");
                 naviGate('/');
             })
             .catch(err => {
-                console.log(err.message);
+                toast.error(err.message);
             })
     }
     const handleGitHubSignIn = () => {
         signInWithGithub()
             .then(res => {
-                console.log(res.user);
+                toast.success("Log In Successfully !!!");
                 naviGate('/');
             })
             .catch(err => {
-                console.log(err.message);
+                toast.error(err.message);
             })
     }
     return (
